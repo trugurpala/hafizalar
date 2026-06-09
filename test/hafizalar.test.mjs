@@ -33,6 +33,7 @@ const requiredFiles = [
   'SECURITY.md',
   'SUPPORT.md',
   'assets/brand/hafizalar-repo-card.svg',
+  'docs/AGENTIC-PATTERN-MAP.md',
   'docs/DIAGRAMS.md',
   'docs/FIGMA-HANDOFF.md',
   'docs/GITHUB-REPO-CHECKLIST.md',
@@ -71,6 +72,7 @@ test('core contract keeps the non-negotiable behavior', () => {
     'Instruction explains. Skill executes. MCP connects. Hook/CI/Gate blocks. Evidence proves.',
     'Hafizalar does not override system, developer, repository, security, or legal instructions.',
     '## 2. First Action: Inspect Before Touching',
+    '## 1A. Agentic Pattern Backbone',
     'No fake PASS.',
     '## 17. Destructive Guard',
     '# Hafizalar Repo Audit',
@@ -86,6 +88,7 @@ test('chatgpt contract keeps ChatGPT separate from Codex and local proof', () =>
     'ChatGPT is not Codex.',
     'Do not pretend you can inspect or modify local files',
     'ChatGPT and Codex have separate practical limits.',
+    '## 0A. Agentic Pattern Use',
     'Verification not run: no local/CI proof available in ChatGPT.',
     '# Hafizalar ChatGPT Intake',
   ]) {
@@ -110,6 +113,7 @@ test('short contract is compact but preserves safety gates', () => {
   const short = read('HAFIZALAR-CODEX-SHORT.md');
   assert.equal(short.includes('Ask only for destructive, paid, secret, production, legal, or security-critical actions.'), true);
   assert.equal(short.includes('No Fake Done'), true);
+  assert.equal(short.includes('route -> inspect -> plan -> act -> observe -> reflect -> recover or report'), true);
   assert.ok(short.length < read('HAFIZALAR-CODEX.md').length);
 });
 
@@ -157,6 +161,8 @@ test('documentation includes diagrams, install detail, and figma handoff', () =>
   assert.equal(read('docs/INSTALLATION.md').includes('## Fast Install Without Cloning'), true);
   assert.equal(read('docs/INSTALLATION.md').includes('github:trugurpala/hafizalar'), true);
   assert.equal(read('docs/INSTALLATION.md').includes('skipping integrity check for git dependency'), true);
+  assert.equal(read('docs/AGENTIC-PATTERN-MAP.md').includes('## Adoption Matrix'), true);
+  assert.equal(read('docs/AGENTIC-PATTERN-MAP.md').includes('route -> inspect -> plan -> act -> observe -> reflect -> recover or report'), true);
   assert.equal(read('docs/USAGE.md').includes('## Compact Handoff Template'), true);
   assert.equal(read('docs/DIAGRAMS.md').includes('```mermaid'), true);
   assert.equal(read('docs/FIGMA-HANDOFF.md').includes('figma.com/board'), true);
@@ -210,6 +216,7 @@ test('installer dry-run and real install work for Codex and ChatGPT surfaces', (
     assert.equal(install.surface, 'both');
     assert.equal(existsSync(path.join(sandbox, '.hafizalar', 'HAFIZALAR-CODEX.md')), true);
     assert.equal(existsSync(path.join(sandbox, '.hafizalar', 'HAFIZALAR-CHATGPT.md')), true);
+    assert.equal(existsSync(path.join(sandbox, '.hafizalar', 'AGENTIC-PATTERN-MAP.md')), true);
     assert.equal(existsSync(path.join(sandbox, '.hafizalar', 'OPENAI-SURFACE-LIMITS.md')), true);
     assert.equal(existsSync(path.join(sandbox, 'HAFIZALAR.md')), true);
     assert.equal(existsSync(path.join(sandbox, 'docs', 'GOLDEN-PATH.md')), true);

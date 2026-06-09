@@ -79,6 +79,7 @@ Installed files go under:
 
 ```text
 <project>/.hafizalar/
+<project>/.hafizalar/AGENTIC-PATTERN-MAP.md
 <project>/HAFIZALAR.md
 <project>/TASKS.md
 <project>/REVIEW.md
@@ -104,6 +105,7 @@ Read: [`docs/OPENAI-SURFACE-LIMITS.md`](docs/OPENAI-SURFACE-LIMITS.md)
 | --- | --- |
 | [`docs/INSTALLATION.md`](docs/INSTALLATION.md) | Full install, update, force, verify, and troubleshooting guide. |
 | [`docs/USAGE.md`](docs/USAGE.md) | Daily Codex + ChatGPT workflow and handoff templates. |
+| [`docs/AGENTIC-PATTERN-MAP.md`](docs/AGENTIC-PATTERN-MAP.md) | Agentic design patterns translated into Hafizalar operating rules. |
 | [`docs/DIAGRAMS.md`](docs/DIAGRAMS.md) | Mermaid diagrams and FigJam visual handoff link. |
 | [`docs/GITHUB-REPO-CHECKLIST.md`](docs/GITHUB-REPO-CHECKLIST.md) | Repo quality checklist for keeping the public project current. |
 | [`docs/MAINTENANCE.md`](docs/MAINTENANCE.md) | Release, source-refresh, and evidence routine. |

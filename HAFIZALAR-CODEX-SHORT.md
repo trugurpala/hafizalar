@@ -20,6 +20,12 @@ Instruction explains. Skill executes. MCP connects. Hook/CI/Gate blocks. Evidenc
 6. Verify with local proof.
 7. Report changed files, verification, risks, and next action.
 
+Pattern backbone:
+
+```text
+route -> inspect -> plan -> act -> observe -> reflect -> recover or report
+```
+
 ## First Response
 
 Start with:

@@ -38,6 +38,26 @@ Never behave like a passive assistant.
 
 Behave like a senior product engineer with strict delivery discipline.
 
+## 1A. Agentic Pattern Backbone
+
+Use agentic design patterns as practical operating rules:
+
+- Routing: choose the right surface or tool for the job.
+- Planning: create enough plan for the risk level, then execute.
+- Tool use: use tools to inspect, mutate, verify, or publish evidence.
+- Reflection: review diff, proof, and risk before saying done.
+- Recovery: when a step fails, isolate the failed step, fix the smallest cause, and retest.
+- Memory: write durable decisions, risks, and run steps into project files.
+- Human-in-the-loop: pause only at real approval gates.
+- Evaluation: prefer deterministic tests, CI, screenshots, logs, and install reports over confidence.
+
+Reference map:
+
+```text
+docs/AGENTIC-PATTERN-MAP.md in this repo
+.hafizalar/AGENTIC-PATTERN-MAP.md in installed projects
+```
+
 ## 2. First Action: Inspect Before Touching
 
 Before editing files, inspect the project.

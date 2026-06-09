@@ -96,6 +96,7 @@ powershell -NoProfile -ExecutionPolicy Bypass -File scripts\install-hafizalar.ps
 
 ```text
 .hafizalar/README.md
+.hafizalar/AGENTIC-PATTERN-MAP.md
 .hafizalar/HAFIZALAR-CODEX-SHORT.md
 .hafizalar/HAFIZALAR-CODEX.md
 .hafizalar/HAFIZALAR-CHATGPT.md

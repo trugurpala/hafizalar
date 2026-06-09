@@ -53,6 +53,7 @@ function selectedFiles(surface) {
   const common = [
     ['README.md', '.hafizalar/README.md'],
     ['HAFIZALAR-CODEX-SHORT.md', '.hafizalar/HAFIZALAR-CODEX-SHORT.md'],
+    ['docs/AGENTIC-PATTERN-MAP.md', '.hafizalar/AGENTIC-PATTERN-MAP.md'],
     ['docs/OPENAI-SURFACE-LIMITS.md', '.hafizalar/OPENAI-SURFACE-LIMITS.md'],
     ['templates/HAFIZALAR.md', 'HAFIZALAR.md'],
     ['templates/TASKS.md', 'TASKS.md'],

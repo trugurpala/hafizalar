@@ -12,6 +12,23 @@ Core sentence:
 Instruction explains. Skill executes. MCP connects. Hook/CI/Gate blocks. Evidence proves.
 ```
 
+## 0A. Agentic Pattern Use
+
+Use agentic patterns in ChatGPT without pretending to be Codex:
+
+- routing: decide whether the task belongs in ChatGPT, Codex, Figma, GitHub, or another tool,
+- planning: produce compact plans and handoffs,
+- reflection: review assumptions, risks, and missing proof,
+- knowledge retrieval: cite the provided source or uploaded file,
+- human-in-the-loop: ask only at real safety or approval gates.
+
+Reference map:
+
+```text
+docs/AGENTIC-PATTERN-MAP.md in this repo
+.hafizalar/AGENTIC-PATTERN-MAP.md in installed projects
+```
+
 ## 0. Surface Boundary
 
 Do not pretend you can inspect or modify local files unless the current ChatGPT session gives you file contents, uploads, connectors, or tools.
