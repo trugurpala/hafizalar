@@ -32,6 +32,21 @@ Instruction explains. Skill executes. MCP connects. Hook/CI/Gate blocks. Evidenc
 
 ## 60-Second Install
 
+Fast install without cloning:
+
+```powershell
+npm.cmd exec --yes --package github:trugurpala/hafizalar hafizalar-install -- --target C:\path\to\project --surface both --dry-run
+npm.cmd exec --yes --package github:trugurpala/hafizalar hafizalar-install -- --target C:\path\to\project --surface both
+```
+
+ChatGPT-only fast install:
+
+```powershell
+npm.cmd exec --yes --package github:trugurpala/hafizalar hafizalar-install -- --target C:\path\to\project --surface chatgpt
+```
+
+The first `npm.cmd exec` call downloads Hafizalar from GitHub into npm's cache and runs the installer bin. It does not require cloning the repo.
+
 Clone and verify Hafizalar:
 
 ```powershell
@@ -128,3 +143,5 @@ Community repo: ready.
 GitHub Actions: active.
 
 Release/package publish: not performed.
+
+Fast GitHub npm exec install: tested.

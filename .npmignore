@@ -1,0 +1,6 @@
+.git/
+.github/
+test/
+reports/
+*.log
+*.tmp

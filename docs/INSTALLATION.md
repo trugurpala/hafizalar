@@ -12,6 +12,27 @@ No package install is required because Hafizalar currently has no runtime depend
 
 ## Get Hafizalar
 
+## Fast Install Without Cloning
+
+Use this path when you want to install Hafizalar directly from GitHub into a target project:
+
+```powershell
+npm.cmd exec --yes --package github:trugurpala/hafizalar hafizalar-install -- --target C:\path\to\project --surface both --dry-run
+npm.cmd exec --yes --package github:trugurpala/hafizalar hafizalar-install -- --target C:\path\to\project --surface both
+```
+
+ChatGPT-only:
+
+```powershell
+npm.cmd exec --yes --package github:trugurpala/hafizalar hafizalar-install -- --target C:\path\to\project --surface chatgpt
+```
+
+This command downloads the GitHub repo into npm's cache and runs the `hafizalar-install` bin from `package.json`.
+
+Use dry-run first. The installer still preserves existing files unless `--force` is used.
+
+## Clone And Verify
+
 Fresh clone:
 
 ```powershell
