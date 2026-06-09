@@ -129,6 +129,7 @@ test('readme points users to the full and short contracts', () => {
   assert.equal(readme.includes('HAFIZALAR-CHATGPT.md'), true);
   assert.equal(readme.includes('install:hafizalar'), true);
   assert.equal(readme.includes('npm.cmd exec --yes --package github:trugurpala/hafizalar hafizalar-install'), true);
+  assert.equal(readme.includes('skipping integrity check for git dependency'), true);
   assert.equal(readme.includes('docs/OPENAI-SURFACE-LIMITS.md'), true);
   assert.equal(readme.includes('docs/INSTALLATION.md'), true);
   assert.equal(readme.includes('assets/brand/hafizalar-repo-card.svg'), true);
@@ -155,6 +156,7 @@ test('documentation includes diagrams, install detail, and figma handoff', () =>
   assert.equal(read('docs/INSTALLATION.md').includes('## Dry-Run First'), true);
   assert.equal(read('docs/INSTALLATION.md').includes('## Fast Install Without Cloning'), true);
   assert.equal(read('docs/INSTALLATION.md').includes('github:trugurpala/hafizalar'), true);
+  assert.equal(read('docs/INSTALLATION.md').includes('skipping integrity check for git dependency'), true);
   assert.equal(read('docs/USAGE.md').includes('## Compact Handoff Template'), true);
   assert.equal(read('docs/DIAGRAMS.md').includes('```mermaid'), true);
   assert.equal(read('docs/FIGMA-HANDOFF.md').includes('figma.com/board'), true);

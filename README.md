@@ -47,6 +47,8 @@ npm.cmd exec --yes --package github:trugurpala/hafizalar hafizalar-install -- --
 
 The first `npm.cmd exec` call downloads Hafizalar from GitHub into npm's cache and runs the installer bin. It does not require cloning the repo.
 
+Npm may print `skipping integrity check for git dependency` for GitHub packages. That warning is expected for a Git dependency and does not mean the Hafizalar install failed. For the quietest path, use the clone-and-run install until an npm package release exists.
+
 Clone and verify Hafizalar:
 
 ```powershell

@@ -31,6 +31,14 @@ This command downloads the GitHub repo into npm's cache and runs the `hafizalar-
 
 Use dry-run first. The installer still preserves existing files unless `--force` is used.
 
+Npm may print this warning for GitHub dependencies:
+
+```text
+skipping integrity check for git dependency
+```
+
+That warning is expected for this fast GitHub install path and does not mean the installer failed. Use the clone-and-run path if you need the quietest install flow before an npm package release exists.
+
 ## Clone And Verify
 
 Fresh clone:
