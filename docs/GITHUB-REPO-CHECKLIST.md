@@ -11,6 +11,7 @@ Use this checklist to keep Hafizalar from becoming stale or incomplete.
 | CI | Complete | GitHub Actions tests Ubuntu and Windows on Node 22 and 24. |
 | Installer | Complete | Node installer and PowerShell wrapper exist. |
 | Tests | Complete | Node test suite covers required files, contracts, docs links, and installer behavior. |
+| Dogfood | Complete | `npm run dogfood -- --json` validates a temporary project loop. |
 | Issue templates | Complete | Bug, feature, and docs issue forms exist. |
 | PR template | Complete | Pull request checklist exists. |
 | Security | Complete | Security policy exists. |

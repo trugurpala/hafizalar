@@ -22,6 +22,7 @@ function isAscii(relativePath) {
 
 const requiredFiles = [
   'README.md',
+  'CHANGELOG.md',
   '.editorconfig',
   '.gitattributes',
   '.npmignore',
@@ -35,6 +36,7 @@ const requiredFiles = [
   'assets/brand/hafizalar-repo-card.svg',
   'docs/AGENTIC-PATTERN-MAP.md',
   'docs/DIAGRAMS.md',
+  'docs/DOGFOOD.md',
   'docs/FIGMA-HANDOFF.md',
   'docs/GITHUB-REPO-CHECKLIST.md',
   'docs/INSTALLATION.md',
@@ -42,6 +44,7 @@ const requiredFiles = [
   'docs/OPENAI-SURFACE-LIMITS.md',
   'docs/USAGE.md',
   'scripts/install-hafizalar.mjs',
+  'scripts/dogfood-hafizalar.mjs',
   'scripts/install-hafizalar.ps1',
   'templates/HAFIZALAR.md',
   'templates/TASKS.md',
@@ -165,6 +168,7 @@ test('documentation includes diagrams, install detail, and figma handoff', () =>
   assert.equal(read('docs/AGENTIC-PATTERN-MAP.md').includes('route -> inspect -> plan -> act -> observe -> reflect -> recover or report'), true);
   assert.equal(read('docs/USAGE.md').includes('## Compact Handoff Template'), true);
   assert.equal(read('docs/DIAGRAMS.md').includes('```mermaid'), true);
+  assert.equal(read('docs/DOGFOOD.md').includes('empty project -> Hafizalar install -> product request -> implementation -> test -> report'), true);
   assert.equal(read('docs/FIGMA-HANDOFF.md').includes('figma.com/board'), true);
   assert.equal(read('docs/GITHUB-REPO-CHECKLIST.md').includes('Repo Settings To Review Manually'), true);
   assert.equal(read('docs/MAINTENANCE.md').includes('## Release Checklist'), true);
@@ -173,9 +177,11 @@ test('documentation includes diagrams, install detail, and figma handoff', () =>
 
 test('package metadata supports public github repo usage', () => {
   const pkg = JSON.parse(read('package.json'));
+  assert.equal(pkg.version, '0.2.0');
   assert.equal(pkg.repository.url, 'git+https://github.com/trugurpala/hafizalar.git');
   assert.equal(pkg.bugs.url, 'https://github.com/trugurpala/hafizalar/issues');
   assert.equal(pkg.bin['hafizalar-install'], './scripts/install-hafizalar.mjs');
+  assert.equal(pkg.scripts.dogfood, 'node scripts/dogfood-hafizalar.mjs');
 });
 
 test('sandbox node verification works without dependencies', () => {

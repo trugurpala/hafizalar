@@ -30,6 +30,8 @@ Instruction explains. Skill executes. MCP connects. Hook/CI/Gate blocks. Evidenc
 | Project templates | `templates/` | Task tracking, review notes, golden path, project setup. |
 | Installer | `scripts/install-hafizalar.mjs` | Copy Hafizalar into any project without overwriting existing files by default. |
 
+Current repo milestone: `0.2.0 Dogfood Proof`.
+
 ## 60-Second Install
 
 Fast install without cloning:
@@ -105,6 +107,7 @@ Read: [`docs/OPENAI-SURFACE-LIMITS.md`](docs/OPENAI-SURFACE-LIMITS.md)
 | --- | --- |
 | [`docs/INSTALLATION.md`](docs/INSTALLATION.md) | Full install, update, force, verify, and troubleshooting guide. |
 | [`docs/USAGE.md`](docs/USAGE.md) | Daily Codex + ChatGPT workflow and handoff templates. |
+| [`docs/DOGFOOD.md`](docs/DOGFOOD.md) | End-to-end temporary-project proof for the Hafizalar loop. |
 | [`docs/AGENTIC-PATTERN-MAP.md`](docs/AGENTIC-PATTERN-MAP.md) | Agentic design patterns translated into Hafizalar operating rules. |
 | [`docs/DIAGRAMS.md`](docs/DIAGRAMS.md) | Mermaid diagrams and FigJam visual handoff link. |
 | [`docs/GITHUB-REPO-CHECKLIST.md`](docs/GITHUB-REPO-CHECKLIST.md) | Repo quality checklist for keeping the public project current. |
@@ -132,6 +135,12 @@ Run:
 npm.cmd test
 ```
 
+Dogfood the full loop:
+
+```powershell
+npm.cmd run dogfood
+```
+
 or:
 
 ```powershell
@@ -145,6 +154,8 @@ The tests verify required files, contract anchors, README links, template presen
 Community repo: ready.
 
 GitHub Actions: active.
+
+Dogfood proof: active.
 
 Release/package publish: not performed.
 
