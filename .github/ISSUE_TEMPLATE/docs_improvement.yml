@@ -1,0 +1,24 @@
+name: Docs improvement
+description: Improve README, install docs, templates, or diagrams.
+title: "docs: "
+labels: ["documentation"]
+body:
+  - type: input
+    id: file
+    attributes:
+      label: File or section
+      placeholder: "README.md, docs/INSTALLATION.md, templates/PROJECT-SETUP.md"
+    validations:
+      required: true
+  - type: textarea
+    id: issue
+    attributes:
+      label: What is unclear or outdated?
+    validations:
+      required: true
+  - type: textarea
+    id: proposed
+    attributes:
+      label: Proposed change
+    validations:
+      required: false

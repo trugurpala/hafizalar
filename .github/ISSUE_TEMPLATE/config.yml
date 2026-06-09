@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Installation guide
+    url: https://github.com/trugurpala/hafizalar/blob/main/docs/INSTALLATION.md
+    about: Read the full install and troubleshooting guide first.
+  - name: Usage guide
+    url: https://github.com/trugurpala/hafizalar/blob/main/docs/USAGE.md
+    about: Learn the Codex and ChatGPT working model.

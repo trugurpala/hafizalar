@@ -58,6 +58,7 @@ function selectedFiles(surface) {
     ['templates/TASKS.md', 'TASKS.md'],
     ['templates/REVIEW.md', 'REVIEW.md'],
     ['templates/GOLDEN-PATH.md', 'docs/GOLDEN-PATH.md'],
+    ['templates/PROJECT-SETUP.md', 'docs/PROJECT-SETUP.md'],
   ];
 
   const codex = [['HAFIZALAR-CODEX.md', '.hafizalar/HAFIZALAR-CODEX.md']];

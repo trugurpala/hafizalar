@@ -1,59 +1,46 @@
 # Hafizalar
 
 [![Hafizalar Test](https://github.com/trugurpala/hafizalar/actions/workflows/test.yml/badge.svg)](https://github.com/trugurpala/hafizalar/actions/workflows/test.yml)
+[![License: MIT](https://img.shields.io/badge/license-MIT-0f766e.svg)](LICENSE)
+[![Node >=22](https://img.shields.io/badge/node-%3E%3D22-2563eb.svg)](package.json)
 
-Hafizalar is a reusable Codex operating memory for building software.
+Hafizalar is a reusable product-builder operating memory for Codex and ChatGPT.
 
-It is not the name of the product you are building.
+It is not the name of the product you are building. It is the discipline that turns a short, messy request into inspected, implemented, verified software.
 
-It is the discipline you paste into Codex so a short, messy request becomes:
+![Hafizalar product builder flow](assets/brand/hafizalar-repo-card.svg)
 
 ```text
-inspect repo -> decide one path -> implement -> verify -> report
+short request -> inspect repo -> choose one path -> implement -> verify -> report
 ```
 
 Core rule:
 
 ```text
-Instruction explains.
-Skill executes.
-MCP connects.
-Hook/CI/Gate blocks.
-Evidence proves.
+Instruction explains. Skill executes. MCP connects. Hook/CI/Gate blocks. Evidence proves.
 ```
 
-## Use
+## What You Get
 
-1. Open a project folder.
-2. Open Codex in that folder.
-3. Paste `HAFIZALAR-CODEX.md` into Codex.
-4. Describe the product or task.
+| Surface | File | Use it for |
+| --- | --- | --- |
+| Codex full contract | `HAFIZALAR-CODEX.md` | Local repo work, edits, tests, build/debug, GitHub source work. |
+| Codex short contract | `HAFIZALAR-CODEX-SHORT.md` | Compact sessions where the full contract is too large. |
+| ChatGPT contract | `HAFIZALAR-CHATGPT.md` | Planning, review, product writing, prompt shaping, compact handoff to Codex. |
+| Project templates | `templates/` | Task tracking, review notes, golden path, project setup. |
+| Installer | `scripts/install-hafizalar.mjs` | Copy Hafizalar into any project without overwriting existing files by default. |
 
-Codex should start with a repo audit, choose a path, make the smallest useful change, run verification, and report proof.
+## 60-Second Install
 
-## Fast Start
+Clone and verify Hafizalar:
 
-Use the short version when you need a compact prompt:
-
-```text
-HAFIZALAR-CODEX-SHORT.md
+```powershell
+git clone https://github.com/trugurpala/hafizalar.git
+cd hafizalar
+npm.cmd test
 ```
 
-Use the full version for serious project work:
-
-```text
-HAFIZALAR-CODEX.md
-```
-
-Use the ChatGPT version when you are working in ChatGPT instead of Codex:
-
-```text
-HAFIZALAR-CHATGPT.md
-```
-
-## Install Into A Project
-
-Dry-run first:
+Dry-run install into your project:
 
 ```powershell
 npm.cmd run install:hafizalar -- --target C:\path\to\project --surface both --dry-run
@@ -65,7 +52,7 @@ Install:
 npm.cmd run install:hafizalar -- --target C:\path\to\project --surface both
 ```
 
-PowerShell wrapper:
+Windows wrapper:
 
 ```powershell
 powershell -NoProfile -ExecutionPolicy Bypass -File scripts\install-hafizalar.ps1 -Target C:\path\to\project -Surface both
@@ -75,47 +62,48 @@ Installed files go under:
 
 ```text
 <project>/.hafizalar/
+<project>/HAFIZALAR.md
+<project>/TASKS.md
+<project>/REVIEW.md
+<project>/docs/GOLDEN-PATH.md
+<project>/docs/PROJECT-SETUP.md
 ```
 
 The installer does not overwrite existing files unless you pass `--force`.
 
-## Codex vs ChatGPT Limits
+## Choose A Surface
 
-Codex and ChatGPT do not have identical limits.
+Use ChatGPT when the work is product thinking, architecture, writing, review, UI direction, or a compact handoff.
 
-- Codex usage depends on your ChatGPT plan and the size/complexity of coding tasks.
-- ChatGPT model messages, uploads, Projects, GPTs, image/voice tools, and Agent mode can have separate limits.
-- Do not assume a ChatGPT file/upload/image/voice banner applies to Codex.
-- Do not assume Codex remaining usage means ChatGPT file uploads or Agent mode are available.
+Use Codex when the work needs local repo inspection, file edits, tests, build logs, screenshots, GitHub source changes, or proof.
 
-See:
+Codex and ChatGPT have separate practical limits. Do not assume a ChatGPT upload/model/tool banner applies to Codex, and do not assume Codex remaining usage means ChatGPT uploads or Agent mode are available.
 
-```text
-docs/OPENAI-SURFACE-LIMITS.md
-```
+Read: [`docs/OPENAI-SURFACE-LIMITS.md`](docs/OPENAI-SURFACE-LIMITS.md)
 
-## What Hafizalar Enforces
+## Documentation
 
-- inspect before editing,
-- choose one practical path,
-- ask only for destructive/paid/secret/production/legal/security-critical actions,
-- never claim done without proof,
-- prefer local deterministic tools,
-- keep unrelated git changes separate,
-- report changed files, verification, risks, and next action.
+| Doc | Purpose |
+| --- | --- |
+| [`docs/INSTALLATION.md`](docs/INSTALLATION.md) | Full install, update, force, verify, and troubleshooting guide. |
+| [`docs/USAGE.md`](docs/USAGE.md) | Daily Codex + ChatGPT workflow and handoff templates. |
+| [`docs/DIAGRAMS.md`](docs/DIAGRAMS.md) | Mermaid diagrams and FigJam visual handoff link. |
+| [`docs/GITHUB-REPO-CHECKLIST.md`](docs/GITHUB-REPO-CHECKLIST.md) | Repo quality checklist for keeping the public project current. |
+| [`docs/MAINTENANCE.md`](docs/MAINTENANCE.md) | Release, source-refresh, and evidence routine. |
+| [`docs/FIGMA-HANDOFF.md`](docs/FIGMA-HANDOFF.md) | Figma/FigJam visual system notes. |
 
-## Minimal Project Files
+## GitHub Community Surface
 
-When useful, copy or adapt:
+This repo includes:
 
-```text
-templates/HAFIZALAR.md
-templates/TASKS.md
-templates/REVIEW.md
-templates/GOLDEN-PATH.md
-```
-
-Do not create these in a project that already has better equivalents.
+- CI on Ubuntu and Windows with Node 22 and Node 24,
+- issue templates,
+- pull request template,
+- Dependabot config,
+- support and security notes,
+- MIT license,
+- tested installer,
+- repo graphics and diagrams.
 
 ## Test
 
@@ -131,10 +119,12 @@ or:
 powershell -NoProfile -ExecutionPolicy Bypass -File scripts/test-hafizalar.ps1
 ```
 
-The tests verify required files, required contract sections, ASCII portability, README links, template presence, and a small sandbox Node test.
+The tests verify required files, contract anchors, README links, template presence, ASCII portability, installer dry-run behavior, real sandbox install behavior, and no obvious secret-shaped text.
 
 ## Status
 
-Community starter: ready.
+Community repo: ready.
+
+GitHub Actions: active.
 
 Release/package publish: not performed.

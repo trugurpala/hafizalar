@@ -22,17 +22,37 @@ function isAscii(relativePath) {
 
 const requiredFiles = [
   'README.md',
+  '.editorconfig',
+  '.gitattributes',
   'HAFIZALAR-CODEX.md',
   'HAFIZALAR-CODEX-SHORT.md',
   'HAFIZALAR-CHATGPT.md',
+  'CODE_OF_CONDUCT.md',
+  'CONTRIBUTING.md',
+  'SECURITY.md',
+  'SUPPORT.md',
+  'assets/brand/hafizalar-repo-card.svg',
+  'docs/DIAGRAMS.md',
+  'docs/FIGMA-HANDOFF.md',
+  'docs/GITHUB-REPO-CHECKLIST.md',
+  'docs/INSTALLATION.md',
+  'docs/MAINTENANCE.md',
   'docs/OPENAI-SURFACE-LIMITS.md',
+  'docs/USAGE.md',
   'scripts/install-hafizalar.mjs',
   'scripts/install-hafizalar.ps1',
   'templates/HAFIZALAR.md',
   'templates/TASKS.md',
   'templates/REVIEW.md',
   'templates/GOLDEN-PATH.md',
+  'templates/PROJECT-SETUP.md',
   'scripts/test-hafizalar.ps1',
+  '.github/ISSUE_TEMPLATE/bug_report.yml',
+  '.github/ISSUE_TEMPLATE/config.yml',
+  '.github/ISSUE_TEMPLATE/docs_improvement.yml',
+  '.github/ISSUE_TEMPLATE/feature_request.yml',
+  '.github/PULL_REQUEST_TEMPLATE.md',
+  '.github/dependabot.yml',
   '.github/workflows/test.yml',
   'LICENSE',
   'package.json',
@@ -108,6 +128,8 @@ test('readme points users to the full and short contracts', () => {
   assert.equal(readme.includes('HAFIZALAR-CHATGPT.md'), true);
   assert.equal(readme.includes('install:hafizalar'), true);
   assert.equal(readme.includes('docs/OPENAI-SURFACE-LIMITS.md'), true);
+  assert.equal(readme.includes('docs/INSTALLATION.md'), true);
+  assert.equal(readme.includes('assets/brand/hafizalar-repo-card.svg'), true);
   assert.equal(readme.includes('npm.cmd test'), true);
 });
 
@@ -116,6 +138,32 @@ test('templates are intentionally small and project-adaptable', () => {
   assert.equal(read('templates/TASKS.md').includes('## Active'), true);
   assert.equal(read('templates/REVIEW.md').includes('### Verification'), true);
   assert.equal(read('templates/GOLDEN-PATH.md').includes('From Zero To Local Run'), true);
+  assert.equal(read('templates/PROJECT-SETUP.md').includes('## Definition Of Done'), true);
+});
+
+test('github community surface is present', () => {
+  assert.equal(read('.github/workflows/test.yml').includes('workflow_dispatch'), true);
+  assert.equal(read('.github/PULL_REQUEST_TEMPLATE.md').includes('## Verification'), true);
+  assert.equal(read('.github/dependabot.yml').includes('github-actions'), true);
+  assert.equal(read('SECURITY.md').includes('Security Policy'), true);
+  assert.equal(read('SUPPORT.md').includes('docs/INSTALLATION.md'), true);
+});
+
+test('documentation includes diagrams, install detail, and figma handoff', () => {
+  assert.equal(read('docs/INSTALLATION.md').includes('## Dry-Run First'), true);
+  assert.equal(read('docs/USAGE.md').includes('## Compact Handoff Template'), true);
+  assert.equal(read('docs/DIAGRAMS.md').includes('```mermaid'), true);
+  assert.equal(read('docs/FIGMA-HANDOFF.md').includes('figma.com/board'), true);
+  assert.equal(read('docs/GITHUB-REPO-CHECKLIST.md').includes('Repo Settings To Review Manually'), true);
+  assert.equal(read('docs/MAINTENANCE.md').includes('## Release Checklist'), true);
+  assert.equal(read('assets/brand/hafizalar-repo-card.svg').includes('<svg'), true);
+});
+
+test('package metadata supports public github repo usage', () => {
+  const pkg = JSON.parse(read('package.json'));
+  assert.equal(pkg.repository.url, 'git+https://github.com/trugurpala/hafizalar.git');
+  assert.equal(pkg.bugs.url, 'https://github.com/trugurpala/hafizalar/issues');
+  assert.equal(pkg.bin['hafizalar-install'], './scripts/install-hafizalar.mjs');
 });
 
 test('sandbox node verification works without dependencies', () => {
@@ -159,6 +207,7 @@ test('installer dry-run and real install work for Codex and ChatGPT surfaces', (
     assert.equal(existsSync(path.join(sandbox, '.hafizalar', 'OPENAI-SURFACE-LIMITS.md')), true);
     assert.equal(existsSync(path.join(sandbox, 'HAFIZALAR.md')), true);
     assert.equal(existsSync(path.join(sandbox, 'docs', 'GOLDEN-PATH.md')), true);
+    assert.equal(existsSync(path.join(sandbox, 'docs', 'PROJECT-SETUP.md')), true);
     assert.equal(existsSync(path.join(sandbox, '.hafizalar', 'INSTALL-REPORT.json')), true);
 
     const secondOutput = execFileSync(process.execPath, [installer, '--target', sandbox, '--surface', 'both'], {

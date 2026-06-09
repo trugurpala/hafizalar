@@ -4,6 +4,25 @@
   "private": false,
   "type": "module",
   "description": "Reusable Codex operating memory for building software with inspection, evidence, and delivery discipline.",
+  "keywords": [
+    "codex",
+    "chatgpt",
+    "ai-agents",
+    "developer-tools",
+    "prompt-engineering",
+    "software-delivery"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/trugurpala/hafizalar.git"
+  },
+  "bugs": {
+    "url": "https://github.com/trugurpala/hafizalar/issues"
+  },
+  "homepage": "https://github.com/trugurpala/hafizalar#readme",
+  "bin": {
+    "hafizalar-install": "./scripts/install-hafizalar.mjs"
+  },
   "scripts": {
     "test": "node --test test/hafizalar.test.mjs",
     "install:hafizalar": "node scripts/install-hafizalar.mjs",

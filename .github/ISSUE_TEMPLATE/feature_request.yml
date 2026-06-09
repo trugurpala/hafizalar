@@ -1,0 +1,39 @@
+name: Feature request
+description: Propose a practical Hafizalar improvement.
+title: "feat: "
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: outcome
+    attributes:
+      label: Desired outcome
+      description: What should become easier or safer?
+    validations:
+      required: true
+  - type: textarea
+    id: current
+    attributes:
+      label: Current workaround
+      description: How do users handle this today?
+    validations:
+      required: false
+  - type: textarea
+    id: proof
+    attributes:
+      label: Useful proof
+      description: Example repo, command output, docs link, or failure case.
+    validations:
+      required: false
+  - type: dropdown
+    id: surface
+    attributes:
+      label: Surface
+      options:
+        - Codex
+        - ChatGPT
+        - Installer
+        - Docs
+        - GitHub workflow
+        - Templates
+    validations:
+      required: true
