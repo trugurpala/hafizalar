@@ -1,5 +1,7 @@
 # Hafizalar
 
+[![Hafizalar Test](https://github.com/trugurpala/hafizalar/actions/workflows/test.yml/badge.svg)](https://github.com/trugurpala/hafizalar/actions/workflows/test.yml)
+
 Hafizalar is a reusable Codex operating memory for building software.
 
 It is not the name of the product you are building.
