@@ -45,6 +45,55 @@ Use the full version for serious project work:
 HAFIZALAR-CODEX.md
 ```
 
+Use the ChatGPT version when you are working in ChatGPT instead of Codex:
+
+```text
+HAFIZALAR-CHATGPT.md
+```
+
+## Install Into A Project
+
+Dry-run first:
+
+```powershell
+npm.cmd run install:hafizalar -- --target C:\path\to\project --surface both --dry-run
+```
+
+Install:
+
+```powershell
+npm.cmd run install:hafizalar -- --target C:\path\to\project --surface both
+```
+
+PowerShell wrapper:
+
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File scripts\install-hafizalar.ps1 -Target C:\path\to\project -Surface both
+```
+
+Installed files go under:
+
+```text
+<project>/.hafizalar/
+```
+
+The installer does not overwrite existing files unless you pass `--force`.
+
+## Codex vs ChatGPT Limits
+
+Codex and ChatGPT do not have identical limits.
+
+- Codex usage depends on your ChatGPT plan and the size/complexity of coding tasks.
+- ChatGPT model messages, uploads, Projects, GPTs, image/voice tools, and Agent mode can have separate limits.
+- Do not assume a ChatGPT file/upload/image/voice banner applies to Codex.
+- Do not assume Codex remaining usage means ChatGPT file uploads or Agent mode are available.
+
+See:
+
+```text
+docs/OPENAI-SURFACE-LIMITS.md
+```
+
 ## What Hafizalar Enforces
 
 - inspect before editing,

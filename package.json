@@ -6,6 +6,7 @@
   "description": "Reusable Codex operating memory for building software with inspection, evidence, and delivery discipline.",
   "scripts": {
     "test": "node --test test/hafizalar.test.mjs",
+    "install:hafizalar": "node scripts/install-hafizalar.mjs",
     "smoke": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/test-hafizalar.ps1"
   },
   "engines": {

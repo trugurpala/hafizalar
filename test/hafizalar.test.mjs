@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { execFileSync } from 'node:child_process';
-import { mkdtempSync, mkdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
+import { existsSync, mkdtempSync, mkdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
 import test from 'node:test';
@@ -24,6 +24,10 @@ const requiredFiles = [
   'README.md',
   'HAFIZALAR-CODEX.md',
   'HAFIZALAR-CODEX-SHORT.md',
+  'HAFIZALAR-CHATGPT.md',
+  'docs/OPENAI-SURFACE-LIMITS.md',
+  'scripts/install-hafizalar.mjs',
+  'scripts/install-hafizalar.ps1',
   'templates/HAFIZALAR.md',
   'templates/TASKS.md',
   'templates/REVIEW.md',
@@ -55,6 +59,32 @@ test('core contract keeps the non-negotiable behavior', () => {
   }
 });
 
+test('chatgpt contract keeps ChatGPT separate from Codex and local proof', () => {
+  const contract = read('HAFIZALAR-CHATGPT.md');
+  for (const phrase of [
+    'ChatGPT is not Codex.',
+    'Do not pretend you can inspect or modify local files',
+    'ChatGPT and Codex have separate practical limits.',
+    'Verification not run: no local/CI proof available in ChatGPT.',
+    '# Hafizalar ChatGPT Intake',
+  ]) {
+    assert.equal(contract.includes(phrase), true, phrase);
+  }
+});
+
+test('surface limits doc records separate Codex and ChatGPT limits with official sources', () => {
+  const limits = read('docs/OPENAI-SURFACE-LIMITS.md');
+  for (const phrase of [
+    'Codex and ChatGPT are separate working surfaces.',
+    'ChatGPT upload/image/voice banners do not apply to Codex.',
+    'https://help.openai.com/en/articles/11369540-codex-in-chatgpt-faq',
+    'https://help.openai.com/en/articles/8555545-uploading-files-in-chatgpt',
+    'https://help.openai.com/en/articles/11752874-chatgpt-agent',
+  ]) {
+    assert.equal(limits.includes(phrase), true, phrase);
+  }
+});
+
 test('short contract is compact but preserves safety gates', () => {
   const short = read('HAFIZALAR-CODEX-SHORT.md');
   assert.equal(short.includes('Ask only for destructive, paid, secret, production, legal, or security-critical actions.'), true);
@@ -75,6 +105,9 @@ test('readme points users to the full and short contracts', () => {
   const readme = read('README.md');
   assert.equal(readme.includes('HAFIZALAR-CODEX.md'), true);
   assert.equal(readme.includes('HAFIZALAR-CODEX-SHORT.md'), true);
+  assert.equal(readme.includes('HAFIZALAR-CHATGPT.md'), true);
+  assert.equal(readme.includes('install:hafizalar'), true);
+  assert.equal(readme.includes('docs/OPENAI-SURFACE-LIMITS.md'), true);
   assert.equal(readme.includes('npm.cmd test'), true);
 });
 
@@ -97,6 +130,42 @@ test('sandbox node verification works without dependencies', () => {
       encoding: 'utf8',
     });
     assert.match(output, /sandbox proof pass/);
+  } finally {
+    rmSync(sandbox, { recursive: true, force: true });
+  }
+});
+
+test('installer dry-run and real install work for Codex and ChatGPT surfaces', () => {
+  const sandbox = mkdtempSync(path.join(tmpdir(), 'hafizalar-install-smoke-'));
+  try {
+    const installer = path.join(root, 'scripts', 'install-hafizalar.mjs');
+    const dryRunOutput = execFileSync(process.execPath, [installer, '--target', sandbox, '--surface', 'both', '--dry-run'], {
+      encoding: 'utf8',
+    });
+    const dryRun = JSON.parse(dryRunOutput);
+    assert.equal(dryRun.dryRun, true);
+    assert.equal(dryRun.wouldWrite.length > 0, true);
+    assert.equal(dryRun.written.length, 0);
+    assert.equal(existsSync(path.join(sandbox, '.hafizalar', 'HAFIZALAR-CODEX.md')), false);
+
+    const installOutput = execFileSync(process.execPath, [installer, '--target', sandbox, '--surface', 'both'], {
+      encoding: 'utf8',
+    });
+    const install = JSON.parse(installOutput);
+    assert.equal(install.ok, true);
+    assert.equal(install.surface, 'both');
+    assert.equal(existsSync(path.join(sandbox, '.hafizalar', 'HAFIZALAR-CODEX.md')), true);
+    assert.equal(existsSync(path.join(sandbox, '.hafizalar', 'HAFIZALAR-CHATGPT.md')), true);
+    assert.equal(existsSync(path.join(sandbox, '.hafizalar', 'OPENAI-SURFACE-LIMITS.md')), true);
+    assert.equal(existsSync(path.join(sandbox, 'HAFIZALAR.md')), true);
+    assert.equal(existsSync(path.join(sandbox, 'docs', 'GOLDEN-PATH.md')), true);
+    assert.equal(existsSync(path.join(sandbox, '.hafizalar', 'INSTALL-REPORT.json')), true);
+
+    const secondOutput = execFileSync(process.execPath, [installer, '--target', sandbox, '--surface', 'both'], {
+      encoding: 'utf8',
+    });
+    const second = JSON.parse(secondOutput);
+    assert.equal(second.skipped.length > 0, true);
   } finally {
     rmSync(sandbox, { recursive: true, force: true });
   }
