@@ -29,8 +29,9 @@ Instruction explains. Skill executes. MCP connects. Hook/CI/Gate blocks. Evidenc
 | ChatGPT contract | `HAFIZALAR-CHATGPT.md` | Planning, review, product writing, prompt shaping, compact handoff to Codex. |
 | Project templates | `templates/` | Task tracking, review notes, golden path, project setup. |
 | Installer | `scripts/install-hafizalar.mjs` | Copy Hafizalar into any project without overwriting existing files by default. |
+| Real project dogfood | `scripts/dogfood-real-projects.mjs` | Install into temp copies/clones of local Codex projects and selected GitHub repos. |
 
-Current repo milestone: `0.2.0 Dogfood Proof`.
+Current repo milestone: `0.3.0 Real Project Dogfood`.
 
 ## 60-Second Install
 
@@ -108,6 +109,7 @@ Read: [`docs/OPENAI-SURFACE-LIMITS.md`](docs/OPENAI-SURFACE-LIMITS.md)
 | [`docs/INSTALLATION.md`](docs/INSTALLATION.md) | Full install, update, force, verify, and troubleshooting guide. |
 | [`docs/USAGE.md`](docs/USAGE.md) | Daily Codex + ChatGPT workflow and handoff templates. |
 | [`docs/DOGFOOD.md`](docs/DOGFOOD.md) | End-to-end temporary-project proof for the Hafizalar loop. |
+| [`docs/REAL-PROJECT-DOGFOOD.md`](docs/REAL-PROJECT-DOGFOOD.md) | Real local/GitHub project install and test proof. |
 | [`docs/AGENTIC-PATTERN-MAP.md`](docs/AGENTIC-PATTERN-MAP.md) | Agentic design patterns translated into Hafizalar operating rules. |
 | [`docs/DIAGRAMS.md`](docs/DIAGRAMS.md) | Mermaid diagrams and FigJam visual handoff link. |
 | [`docs/GITHUB-REPO-CHECKLIST.md`](docs/GITHUB-REPO-CHECKLIST.md) | Repo quality checklist for keeping the public project current. |
@@ -141,13 +143,19 @@ Dogfood the full loop:
 npm.cmd run dogfood
 ```
 
+Dogfood real Codex/GitHub projects in temporary copies:
+
+```powershell
+npm.cmd run dogfood:real -- --json
+```
+
 or:
 
 ```powershell
 powershell -NoProfile -ExecutionPolicy Bypass -File scripts/test-hafizalar.ps1
 ```
 
-The tests verify required files, contract anchors, README links, template presence, ASCII portability, installer dry-run behavior, real sandbox install behavior, and no obvious secret-shaped text.
+The tests verify required files, contract anchors, README links, template presence, ASCII portability, installer dry-run behavior, real sandbox install behavior, dogfood command coverage, and no obvious secret-shaped text.
 
 ## Status
 
@@ -156,6 +164,8 @@ Community repo: ready.
 GitHub Actions: active.
 
 Dogfood proof: active.
+
+Real project dogfood: active.
 
 Release/package publish: not performed.
 

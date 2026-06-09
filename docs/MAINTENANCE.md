@@ -8,6 +8,7 @@ Hafizalar should stay small, current, and proven.
 - Review Dependabot suggestions.
 - Run `npm.cmd test` on the main branch.
 - Run `npm.cmd run dogfood -- --json` before meaningful release notes.
+- Run `npm.cmd run dogfood:real -- --json` before claiming real project coverage.
 - Confirm issue templates still match the repo workflow.
 
 ## Monthly
@@ -22,16 +23,17 @@ Hafizalar should stay small, current, and proven.
 1. `git status --short`
 2. `npm.cmd test`
 3. `npm.cmd run dogfood -- --json`
-4. Installer dry-run into a temporary project
-5. Real installer smoke into a temporary project
-6. GitHub Actions green on main
-7. Changelog or release notes prepared
-8. No credentials or local-only private data included
-9. Tag created only after CI passes
+4. `npm.cmd run dogfood:real -- --json`
+5. Installer dry-run into a temporary project
+6. Real installer smoke into a temporary project
+7. GitHub Actions green on main
+8. Changelog or release notes prepared
+9. No credentials or local-only private data included
+10. Tag created only after CI passes
 
 ## Versioning
 
-Current package version: `0.2.0`
+Current package version: `0.3.0`
 
 No npm publish has been performed.
 
@@ -39,6 +41,7 @@ Recommended future path:
 
 - `0.1.x` for docs and installer hardening,
 - `0.2.x` for dogfood proof hardening and cross-platform install polish,
+- `0.3.x` for real project dogfood and release evidence hardening,
 - `1.0.0` only after several real project installs prove the contract.
 
 ## Updating Installer Behavior

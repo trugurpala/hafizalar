@@ -12,6 +12,7 @@ Use this checklist to keep Hafizalar from becoming stale or incomplete.
 | Installer | Complete | Node installer and PowerShell wrapper exist. |
 | Tests | Complete | Node test suite covers required files, contracts, docs links, and installer behavior. |
 | Dogfood | Complete | `npm run dogfood -- --json` validates a temporary project loop. |
+| Real project dogfood | Complete | `npm run dogfood:real -- --json` validates temp local/GitHub project installs. |
 | Issue templates | Complete | Bug, feature, and docs issue forms exist. |
 | PR template | Complete | Pull request checklist exists. |
 | Security | Complete | Security policy exists. |
@@ -25,6 +26,7 @@ Use this checklist to keep Hafizalar from becoming stale or incomplete.
 - Identify changed and new files.
 - Run `npm.cmd test`.
 - Run installer smoke when installer or templates changed.
+- Run `npm.cmd run dogfood:real -- --json` before claiming real project coverage.
 - Update docs if commands, files, or behavior changed.
 - Keep official-source docs dated when limits or external behavior are mentioned.
 
@@ -32,6 +34,7 @@ Use this checklist to keep Hafizalar from becoming stale or incomplete.
 
 - Confirm README install commands still work.
 - Confirm `docs/INSTALLATION.md` matches installer output.
+- Confirm `docs/REAL-PROJECT-DOGFOOD.md` matches the current local and GitHub target list.
 - Confirm GitHub Actions is green.
 - Confirm no credentials or private local paths are included.
 - Add a release note with changed files and verification proof.

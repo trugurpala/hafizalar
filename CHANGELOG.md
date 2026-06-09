@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.3.0 - Real Project Dogfood
+
+- Added `npm run dogfood:real`.
+- Added temp-copy validation for local Codex projects.
+- Added temp-clone validation for selected GitHub repos.
+- Added `docs/REAL-PROJECT-DOGFOOD.md`.
+- Kept the command out of GitHub Actions because it needs local folders and private GitHub access.
+- Kept npm publish and GitHub release tag out of this phase.
+
 ## 0.2.0 - Dogfood Proof
 
 - Added `npm run dogfood`.
