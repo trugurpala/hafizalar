@@ -31,7 +31,7 @@ Instruction explains. Skill executes. MCP connects. Hook/CI/Gate blocks. Evidenc
 | Installer | `scripts/install-hafizalar.mjs` | Copy Hafizalar into any project without overwriting existing files by default. |
 | Real project dogfood | `scripts/dogfood-real-projects.mjs` | Install into temp copies/clones of local Codex projects and selected GitHub repos. |
 
-Current repo milestone: `0.3.0 Real Project Dogfood`.
+Current repo milestone: `0.3.1 Full Real Project Sweep`.
 
 ## 60-Second Install
 
@@ -147,6 +147,12 @@ Dogfood real Codex/GitHub projects in temporary copies:
 
 ```powershell
 npm.cmd run dogfood:real -- --json
+```
+
+Run a full GitHub owner inventory pass:
+
+```powershell
+npm.cmd run dogfood:real -- --github-all --github-owner trugurpala --json
 ```
 
 or:

@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.3.1 - Full Real Project Sweep
+
+- Added dirty-inclusive temp-copy coverage for local `pala-os-v4`.
+- Added install-only local coverage for `konusmalar`, `pala-os`, and `pala-os-bilgi-bankasi`.
+- Added GitHub coverage for `trugurpala/pala-os-v4`.
+- Added `--github-all --github-owner <owner>` for dynamic owner inventory install-only coverage.
+- Kept npm publish and GitHub release tag out of this phase.
+
 ## 0.3.0 - Real Project Dogfood
 
 - Added `npm run dogfood:real`.

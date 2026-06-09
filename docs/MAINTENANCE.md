@@ -9,6 +9,7 @@ Hafizalar should stay small, current, and proven.
 - Run `npm.cmd test` on the main branch.
 - Run `npm.cmd run dogfood -- --json` before meaningful release notes.
 - Run `npm.cmd run dogfood:real -- --json` before claiming real project coverage.
+- Run `npm.cmd run dogfood:real -- --github-all --github-owner trugurpala --json` before claiming full GitHub owner coverage.
 - Confirm issue templates still match the repo workflow.
 
 ## Monthly
@@ -24,16 +25,17 @@ Hafizalar should stay small, current, and proven.
 2. `npm.cmd test`
 3. `npm.cmd run dogfood -- --json`
 4. `npm.cmd run dogfood:real -- --json`
-5. Installer dry-run into a temporary project
-6. Real installer smoke into a temporary project
-7. GitHub Actions green on main
-8. Changelog or release notes prepared
-9. No credentials or local-only private data included
-10. Tag created only after CI passes
+5. `npm.cmd run dogfood:real -- --github-all --github-owner trugurpala --json`
+6. Installer dry-run into a temporary project
+7. Real installer smoke into a temporary project
+8. GitHub Actions green on main
+9. Changelog or release notes prepared
+10. No credentials or local-only private data included
+11. Tag created only after CI passes
 
 ## Versioning
 
-Current package version: `0.3.0`
+Current package version: `0.3.1`
 
 No npm publish has been performed.
 

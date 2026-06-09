@@ -13,6 +13,7 @@ Use this checklist to keep Hafizalar from becoming stale or incomplete.
 | Tests | Complete | Node test suite covers required files, contracts, docs links, and installer behavior. |
 | Dogfood | Complete | `npm run dogfood -- --json` validates a temporary project loop. |
 | Real project dogfood | Complete | `npm run dogfood:real -- --json` validates temp local/GitHub project installs. |
+| Full GitHub owner sweep | Complete | `npm run dogfood:real -- --github-all --github-owner trugurpala --json` validates dynamic install-only coverage for non-curated repos. |
 | Issue templates | Complete | Bug, feature, and docs issue forms exist. |
 | PR template | Complete | Pull request checklist exists. |
 | Security | Complete | Security policy exists. |
@@ -27,6 +28,7 @@ Use this checklist to keep Hafizalar from becoming stale or incomplete.
 - Run `npm.cmd test`.
 - Run installer smoke when installer or templates changed.
 - Run `npm.cmd run dogfood:real -- --json` before claiming real project coverage.
+- Run `npm.cmd run dogfood:real -- --github-all --github-owner trugurpala --json` before claiming full GitHub owner coverage.
 - Update docs if commands, files, or behavior changed.
 - Keep official-source docs dated when limits or external behavior are mentioned.
 

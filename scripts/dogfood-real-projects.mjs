@@ -9,11 +9,39 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 
 const localTargets = [
   {
+    name: 'konusmalar',
+    source: 'konusmalar',
+    mode: 'local-git',
+    runTest: false,
+    reason: 'local conversation memory repo without package test script',
+  },
+  {
+    name: 'pala-os',
+    source: 'pala-os',
+    mode: 'local-git',
+    runTest: false,
+    reason: 'private Pala OS monorepo proxy without root test script',
+  },
+  {
+    name: 'pala-os-bilgi-bankasi',
+    source: 'pala-os-bilgi-bankasi',
+    mode: 'local-git',
+    runTest: false,
+    reason: 'local knowledge-bank repo without package test script',
+  },
+  {
     name: 'pala-os-v3',
     source: 'pala-os-v3',
     mode: 'local-git',
     runTest: true,
     reason: 'public Pala OS baseline with Node test script',
+  },
+  {
+    name: 'pala-os-v4',
+    source: 'pala-os-v4',
+    mode: 'local-copy',
+    runTest: false,
+    reason: 'dirty-inclusive temp copy; install-only because this local shape needs git metadata and legacy test dependencies',
   },
   {
     name: 'pala-os-v5',
@@ -39,6 +67,11 @@ const localTargets = [
 ];
 
 const githubTargets = [
+  {
+    repo: 'trugurpala/pala-os-v4',
+    runTest: false,
+    reason: 'public GitHub clone; install-only because default tests require project-specific dependencies',
+  },
   {
     repo: 'trugurpala/pala-os-v3',
     runTest: true,
@@ -66,6 +99,8 @@ function parseArgs(argv) {
     codexRoot: path.resolve(root, '..'),
     keep: false,
     json: false,
+    githubAll: false,
+    githubOwner: 'trugurpala',
     skipGithub: false,
     help: false,
   };
@@ -79,6 +114,11 @@ function parseArgs(argv) {
       args.keep = true;
     } else if (token === '--json') {
       args.json = true;
+    } else if (token === '--github-all') {
+      args.githubAll = true;
+    } else if (token === '--github-owner') {
+      args.githubOwner = argv[index + 1];
+      index += 1;
     } else if (token === '--skip-github') {
       args.skipGithub = true;
     } else if (token === '--help' || token === '-h') {
@@ -101,6 +141,8 @@ Usage:
 Options:
   --codex-root <path>  Folder containing local Codex projects. Defaults to this repo's parent.
   --skip-github       Skip GitHub clone checks.
+  --github-all        Add every non-archived repo from --github-owner as install-only coverage.
+  --github-owner <id> Owner used by --github-all. Defaults to trugurpala.
   --keep              Keep the temporary dogfood workspace for inspection.
   --json              Print full JSON evidence.
 `);
@@ -344,6 +386,35 @@ function dogfoodGithubTarget(target, workRoot) {
   };
 }
 
+function githubInventoryTargets(args) {
+  if (!args.githubAll || args.skipGithub) {
+    return [];
+  }
+
+  const output = run('gh', [
+    'repo',
+    'list',
+    args.githubOwner,
+    '--limit',
+    '200',
+    '--json',
+    'name,isArchived',
+  ], root).output;
+  const repos = JSON.parse(output);
+  const known = new Set(githubTargets.map((target) => target.repo));
+
+  return repos
+    .filter((repo) => !repo.isArchived)
+    .map((repo) => `${args.githubOwner}/${repo.name}`)
+    .filter((repo) => !known.has(repo))
+    .sort()
+    .map((repo) => ({
+      repo,
+      runTest: false,
+      reason: 'dynamic GitHub owner inventory install-only coverage',
+    }));
+}
+
 function cleanTemp(workRoot) {
   const tempPath = path.resolve(tmpdir());
   const resolved = path.resolve(workRoot);
@@ -365,14 +436,11 @@ function runDogfood(args) {
     workRoot,
     kept: args.keep,
     skipGithub: args.skipGithub,
+    githubAll: args.githubAll,
+    githubOwner: args.githubOwner,
     local: [],
     github: [],
-    excludedLocalTargets: [
-      {
-        name: 'pala-os-v4',
-        reason: 'local working tree had pre-existing dirty files during audit',
-      },
-    ],
+    excludedLocalTargets: [],
     releasePosture: 'local proof only; no npm publish, release tag, production deploy, or force push',
   };
 
@@ -382,7 +450,7 @@ function runDogfood(args) {
     }
 
     if (!args.skipGithub) {
-      for (const target of githubTargets) {
+      for (const target of [...githubTargets, ...githubInventoryTargets(args)]) {
         evidence.github.push(dogfoodGithubTarget(target, workRoot));
       }
     }

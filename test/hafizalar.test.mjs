@@ -173,6 +173,7 @@ test('documentation includes diagrams, install detail, and figma handoff', () =>
   assert.equal(read('docs/DOGFOOD.md').includes('empty project -> Hafizalar install -> product request -> implementation -> test -> report'), true);
   assert.equal(read('docs/REAL-PROJECT-DOGFOOD.md').includes('without modifying the active project folders'), true);
   assert.equal(read('docs/REAL-PROJECT-DOGFOOD.md').includes('trugurpala/pala-os-v6'), true);
+  assert.equal(read('docs/REAL-PROJECT-DOGFOOD.md').includes('--github-all'), true);
   assert.equal(read('docs/FIGMA-HANDOFF.md').includes('figma.com/board'), true);
   assert.equal(read('docs/GITHUB-REPO-CHECKLIST.md').includes('Repo Settings To Review Manually'), true);
   assert.equal(read('docs/MAINTENANCE.md').includes('## Release Checklist'), true);
@@ -181,7 +182,7 @@ test('documentation includes diagrams, install detail, and figma handoff', () =>
 
 test('package metadata supports public github repo usage', () => {
   const pkg = JSON.parse(read('package.json'));
-  assert.equal(pkg.version, '0.3.0');
+  assert.equal(pkg.version, '0.3.1');
   assert.equal(pkg.repository.url, 'git+https://github.com/trugurpala/hafizalar.git');
   assert.equal(pkg.bugs.url, 'https://github.com/trugurpala/hafizalar/issues');
   assert.equal(pkg.bin['hafizalar-install'], './scripts/install-hafizalar.mjs');
